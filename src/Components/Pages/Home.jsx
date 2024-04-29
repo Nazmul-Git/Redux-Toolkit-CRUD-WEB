@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import bgHome from '../../../images/redux.jpg';
 
 const Home = () => {
     return (
         <div>
-            <p>Home</p>
+            <h2 className='text-4xl font-extrabold text-center p-4'>Redux-Toolkit</h2>
+            <img src={bgHome}/>
         </div>
     );
 };

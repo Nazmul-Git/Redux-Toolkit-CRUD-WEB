@@ -25,8 +25,8 @@ const All_Users = () => {
                     <tbody>
                         {
                             users && users.map(user=>{
-                                const {id, name, developer}=user;
-                                console.log(name,developer)
+                                const {id, username, developer}=user;
+                                console.log(username,developer)
                                 return <tr key={id}>
                                 <th></th>
                                 <td>
@@ -37,7 +37,7 @@ const All_Users = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">{name}</div>
+                                            <div className="font-bold">{username}</div>
                                             <div className="text-sm opacity-50">United States</div>
                                         </div>
                                     </div>

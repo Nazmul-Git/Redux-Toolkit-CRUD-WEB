@@ -7,13 +7,19 @@ import {
 } from "react-router-dom";
 import Home from '../Components/Pages/Home';
 import Error from '../Components/Pages/Error';
+import Navbar from '../Layouts/Navbar';
+import All_Users from '../Components/Pages/All_Users';
+import CreateUser from '../Components/Pages/CreateUser';
 
 
 const Index = () => {
     return (
         <BrowserRouter>
+            <Navbar/>
             <Routes>
                 <Route path='/' element={<Home/>}></Route>
+                <Route path='/all-users' element={<All_Users/>}></Route>
+                <Route path='/create-user' element={<CreateUser/>}></Route>
                 <Route path='*' element={<Error/>}></Route>
             </Routes>
         </BrowserRouter>

@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser } from '../../Features/Users/UsersSlice';
+import { Link } from 'react-router-dom';
 
 const All_Users = () => {
     const users = useSelector((state) => state.usersReducer.users);
     console.log(users)
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
+
+    const handleDelete = (id) => {
+        dispatch(deleteUser(id));
+    }
     return (
         <div className='p-8'>
             <h2 className='text-center'>all users</h2>
@@ -24,38 +30,40 @@ const All_Users = () => {
                     </thead>
                     <tbody>
                         {
-                            users && users.map(user=>{
-                                const {id, username, developer}=user;
-                                console.log(username,developer)
+                            users && users.map(user => {
+                                const { id, username, developer } = user;
+                                console.log(username, developer)
                                 return <tr key={id}>
-                                <th></th>
-                                <td>
-                                    <div className="flex items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                    <th></th>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">{username}</div>
+                                                <div className="text-sm opacity-50">United States</div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="font-bold">{username}</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    {developer}
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                                </td>
-                                <td>active</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">Edit</button>
-                                    <button className="btn btn-ghost btn-xs">Delete</button>
-                                </th>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        {developer}
+                                        <br />
+                                        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                    </td>
+                                    <td>active</td>
+                                    <th>
+                                        <Link to='/edit-user' state={{id, username, developer}}>
+                                            <button className="btn btn-ghost btn-xs">Edit</button>
+                                        </Link>
+                                        <button onClick={() => handleDelete(id)} className="btn btn-ghost btn-xs">Delete</button>
+                                    </th>
+                                </tr>
                             })
                         }
-                        
+
 
                     </tbody>
                 </table>
